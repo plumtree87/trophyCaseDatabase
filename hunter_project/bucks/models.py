@@ -6,10 +6,8 @@ from django.db import models
 
 
 class Buck(models.Model):
-    imageUpload = models.ImageField(upload_to='uploads/', max_length=100)
-    documentsUpload = models.FileField(upload_to='documentsUpload/', max_length=10000)
-    image = models.ImageField()
-    documents = models.FileField()
+    image = models.ImageField(default=None, upload_to='buckImages/')
+    documents = models.FileField(default=None, blank=True, null=True, upload_to='documents/')
     weight = models.IntegerField(default=0)
     #location = GeopositionField()
     rackpoints = models.IntegerField(default=0)
