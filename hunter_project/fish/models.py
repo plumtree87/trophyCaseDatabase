@@ -6,8 +6,8 @@ from django.db import models
 
 
 class Bass(models.Model):
-    image = models.ImageField(default=None, upload_to='buckImages/')
-    documents = models.FileField(default=None, blank=True, null=True, upload_to='documents/')
+    image = models.ImageField(default=None, upload_to='fishImages/')
+    documents = models.FileField(default=None, blank=True, null=True, upload_to='fishDocuments/')
     weight = models.IntegerField(default=0)
     isPregnant = models.BooleanField(default=False)
     #location = GeopositionField()
