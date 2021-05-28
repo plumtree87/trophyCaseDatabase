@@ -19,15 +19,17 @@ from django.conf.urls.static import static # new
 from django.conf import settings # new
 from django.urls import re_path
 from django.views.static import serve
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('user_app.urls')),
+    path('api/', include('user_app.urls')),
     path('', include('bucks.urls')),
     path('', include('ducks.urls')),
     path('', include('fish.urls')),
     path('', include('comments.urls')),
     path('', include('replies.urls')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
