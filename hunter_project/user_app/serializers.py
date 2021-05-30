@@ -63,6 +63,6 @@ class UserLoginSerializer(serializers.Serializer):
                 'User with given email and password does not exists'
             )
         return {
-            'email': user.email,
+            'email':user.email,
             'token': jwt_token
         }

@@ -23,6 +23,7 @@ class UserLoginView(RetrieveAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        print("IT GOT TO THIS POINT")
         response = {
             'success': 'True',
             'status code': status.HTTP_200_OK,
