@@ -24,11 +24,11 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('user_app.urls')),
-    path('', include('bucks.urls')),
-    path('', include('ducks.urls')),
-    path('', include('fish.urls')),
-    path('', include('comments.urls')),
-    path('', include('replies.urls')),
+    path('api/', include('bucks.urls')),
+    path('api/', include('ducks.urls')),
+    path('api/', include('fish.urls')),
+    path('api/', include('comments.urls')),
+    path('api/', include('replies.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

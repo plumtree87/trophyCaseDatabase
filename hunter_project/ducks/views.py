@@ -1,16 +1,20 @@
 from django.shortcuts import render
 
 # Create your views here.
+from rest_framework.generics import RetrieveAPIView
+from rest_framework.permissions import IsAuthenticated,AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from .models import Duck
 from .serializers import DuckSerializer
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-
 # Create your views here.
 
-class DuckList(APIView):
+class DuckList(RetrieveAPIView):
+
+    permission_classes = []
 
     def get(self, request):
         ducks = Duck.objects.all()

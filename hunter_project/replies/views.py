@@ -10,6 +10,8 @@ from .models import Reply
 # Create your views here.
 
 class ReplyList(APIView):
+    permission_classes = []
+
 
     def get(self, request):
         replies = Reply.objects.all()

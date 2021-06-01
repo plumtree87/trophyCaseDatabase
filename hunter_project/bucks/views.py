@@ -1,3 +1,6 @@
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 from .models import Buck
 from .serializers import BuckSerializer
 from rest_framework.views import APIView
@@ -8,6 +11,7 @@ from rest_framework import status
 # Create your views here.
 
 class BuckList(APIView):
+    permission_classes = []
 
     def get(self, request):
         bucks = Buck.objects.all()

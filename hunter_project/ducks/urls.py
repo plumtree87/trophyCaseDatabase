@@ -2,10 +2,10 @@ from django.urls import path
 from . import views
 from django.urls import path
 from .views import DuckList
-from . import views
+from .views import DuckList
 
 urlpatterns = [
-    path('ducks/', views.DuckList.as_view()),
+    path('ducks/', DuckList.as_view()),
 ]
 
 

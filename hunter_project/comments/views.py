@@ -9,6 +9,7 @@ from .models import Comment
 # Create your views here.
 
 class CommentList(APIView):
+    permission_classes = []
 
     def get(self, request):
         comments = Comment.objects.all()

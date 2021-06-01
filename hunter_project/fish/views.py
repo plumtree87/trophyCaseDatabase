@@ -1,3 +1,5 @@
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from .serializers import BassSerializer
 from rest_framework.views import APIView
@@ -9,6 +11,8 @@ from .models import Bass
 # Create your views here.
 
 class BassList(APIView):
+
+    permission_classes = []
 
     def get(self, request):
         fish = Bass.objects.all()
