@@ -25,3 +25,15 @@ class BassList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class UsersBass(APIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+
+    def get(self, request):
+        usersBass = Bass.objects.filter(user=request.user)
+        serializer = BassSerializer(usersBass, many=True)
+        return Response(serializer.data)
+

@@ -25,3 +25,12 @@ class BuckList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class UsersBucks(APIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+
+    def get(self, request):
+        usersBucks = Buck.objects.filter(user=request.user)
+        serializer = BuckSerializer(usersBucks, many=True)
+        return Response(serializer.data)
+

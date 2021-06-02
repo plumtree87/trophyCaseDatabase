@@ -30,3 +30,13 @@ class DuckList(RetrieveAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class UsersDucks(RetrieveAPIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_class = JSONWebTokenAuthentication
+
+    def get(self, request):
+        usersDucks = Duck.objects.filter(user=request.user)
+        serializer = DuckSerializer(usersDucks, many=True)
+        return Response(serializer.data)
+
