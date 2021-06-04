@@ -7,5 +7,5 @@ class BuckSerializer(serializers.ModelSerializer):
         model = Buck
         fields = [
             'image', 'documents',
-            'weight', 'comments', 'prize', 'user', 'rackpoints'
+            'weight', 'comments', 'prize', 'user', 'rackpoints', 'id'
         ]

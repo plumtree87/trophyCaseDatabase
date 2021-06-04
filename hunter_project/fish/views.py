@@ -1,3 +1,4 @@
+from django.http import Http404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
@@ -37,3 +38,22 @@ class UsersBass(APIView):
         serializer = BassSerializer(usersBass, many=True)
         return Response(serializer.data)
 
+
+    def get_objectByPK(self, pk):
+        try:
+            return Bass.objects.get(pk=pk)
+        except Bass.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, pk):
+        bass = self.get_objectByPK(pk)
+        bass.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, pk):
+        bass = self.get_objectByPK(pk)
+        serializer = BassSerializer(bass, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

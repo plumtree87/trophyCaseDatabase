@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import render
 
 # Create your views here.
@@ -40,3 +41,22 @@ class UsersDucks(RetrieveAPIView):
         serializer = DuckSerializer(usersDucks, many=True)
         return Response(serializer.data)
 
+
+    def get_objectByPK(self, pk):
+        try:
+            return Duck.objects.get(pk=pk)
+        except Duck.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, pk):
+        duck = self.get_objectByPK(pk)
+        duck.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def put(self, request, pk):
+        duck = self.get_objectByPK(pk)
+        serializer = DuckSerializer(duck, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

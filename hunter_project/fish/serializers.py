@@ -6,5 +6,5 @@ class BassSerializer(serializers.ModelSerializer):
         model = Bass
         fields = [
             'image', 'documents',
-            'weight', 'comments', 'prize', 'user', 'isPregnant'
+            'weight', 'comments', 'prize', 'user', 'isPregnant', 'id'
         ]

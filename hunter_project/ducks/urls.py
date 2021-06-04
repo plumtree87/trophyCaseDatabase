@@ -6,7 +6,8 @@ from .views import DuckList, UsersDucks
 
 urlpatterns = [
     path('ducks/', DuckList.as_view()),
-    path('usersDucks/', UsersDucks.as_view())
+    path('usersDucks/', UsersDucks.as_view()),
+    path('usersDucks/<int:pk>', UsersDucks.as_view())
 ]
 
 
