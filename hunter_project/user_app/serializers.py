@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender')
+        fields = ('first_name', 'last_name', 'phone_number', 'age', 'gender', 'id')
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
@@ -64,5 +64,6 @@ class UserLoginSerializer(serializers.Serializer):
             )
         return {
             'email':user.email,
-            'token': jwt_token
+            'token': jwt_token,
+            'id': user.id
         }

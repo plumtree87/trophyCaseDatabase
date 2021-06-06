@@ -10,7 +10,7 @@ from rest_framework.generics import CreateAPIView
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from .models import UserProfile
+from .models import UserProfile, User
 
 # Create your views here.
 
@@ -23,12 +23,14 @@ class UserLoginView(RetrieveAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-        print("IT GOT TO THIS POINT")
+
         response = {
             'success': 'True',
             'status code': status.HTTP_200_OK,
             'message': 'User logged in  successfully',
             'token': serializer.data['token'],
+
+
             }
         status_code = status.HTTP_200_OK
 
@@ -72,6 +74,7 @@ class UserProfileView(RetrieveAPIView):
                     'phone_number': user_profile.phone_number,
                     'age': user_profile.age,
                     'gender': user_profile.gender,
+                    'user_id': user_profile.user_id
                     }]
                 }
 
@@ -84,3 +87,4 @@ class UserProfileView(RetrieveAPIView):
                 'error': str(e)
                 }
         return Response(response, status=status_code)
+
