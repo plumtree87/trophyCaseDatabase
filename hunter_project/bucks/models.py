@@ -10,6 +10,7 @@ class Buck(models.Model):
     documents = models.FileField(default=None, blank=True, null=True, upload_to='documents/')
     weight = models.IntegerField(default=0)
     #location = GeopositionField()
+    video_id = models.CharField(max_length=50, default=None)
     rackpoints = models.IntegerField(default=0)
     comments = models.ForeignKey('comments.Comment', default=None, on_delete=models.CASCADE, related_name="commentsAboutBuck")
     prize = models.IntegerField(default=0)

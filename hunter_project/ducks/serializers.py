@@ -7,5 +7,5 @@ class DuckSerializer(serializers.ModelSerializer):
         model = Duck
         fields = [
             'image', 'documents',
-            'weight', 'comments', 'prize', 'user', 'footsize', 'id'
+            'weight', 'comments', 'prize', 'user', 'footsize', 'id', 'video_id'
         ]
