@@ -11,6 +11,7 @@ class Duck(models.Model):
     weight = models.IntegerField(default=0)
     footsize = models.IntegerField(default=0)
     #location = GeopositionField()
+    address = models.CharField(max_length=100, default=None)
     video_id = models.CharField(max_length=50, default=None)
     comments = models.ForeignKey('comments.Comment', default=None, on_delete=models.CASCADE, related_name="commentsAboutDuck")
     prize = models.IntegerField(default=0)
