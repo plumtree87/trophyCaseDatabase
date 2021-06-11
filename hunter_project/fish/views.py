@@ -1,4 +1,5 @@
 from django.http import Http404
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
@@ -11,13 +12,19 @@ from .models import Bass
 
 # Create your views here.
 
-class BassList(APIView):
 
+class BassList(APIView):
+    parser_classes = [MultiPartParser, FormParser]
     permission_classes = []
 
     def get(self, request):
         fish = Bass.objects.all()
         serializer = BassSerializer(fish, many=True)
+        return Response(serializer.data)
+
+    def get_another_users_bass(self, request):
+        bass = Bass.objects.filter(user=request.data)
+        serializer = BassSerializer(bass, many=True)
         return Response(serializer.data)
 
     def post(self, request):
@@ -32,6 +39,7 @@ class BassList(APIView):
 class UsersBass(APIView):
     permission_classes = (IsAuthenticated,)
     authentication_class = JSONWebTokenAuthentication
+    parser_classes = [MultiPartParser, FormParser]
 
     def get(self, request):
         usersBass = Bass.objects.filter(user=request.user)

@@ -124,7 +124,7 @@ class Email(APIView):
         msg['From'] = 'hunterbooktrophycase@gmail.com'
         msg['To'] = f'{data}'
         msg.set_content('Did you see yourself on the Trophy Case leader board? Nice work! If you hold position there,'
-                        'till the end of the year. You will win the pot for that category!')
+                        'till the end of the year. You will win the pot for that category!.')
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
             smtp.login('hunterbooktrophycase@gmail.com', 'Wordpass1!')
             smtp.send_message(msg)
